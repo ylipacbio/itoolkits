@@ -1,6 +1,6 @@
 My toolkits for internal analysis. 
 
-Directory **isoseq/** contains scripts for testing isoseq.
+Directory **isoseq/** contains scripts for testing the Iso-Seq pipeline.
 
 + **subset_isoseq_subreads.py**
     a python script which subsets input bam by cherry-picking subreads which support a few HQ/LQ isoforms based on existing Iso-Seq analysis of the input bam.
