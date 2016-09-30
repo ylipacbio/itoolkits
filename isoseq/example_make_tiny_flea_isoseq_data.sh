@@ -8,5 +8,5 @@ d=/pbi/dept/secondary/siv/smrtlink/smrtlink-alpha/smrtsuite_170220/userdata/jobs
 
 python subset_isoseq_subreads.py \
 /pbi/collections/315/3150353/r54086_20160831_010819/4_D01/m54086_160831_230338.subreads.bam \
-$d/cluster_report.csv $d/hq_isoforms.fasta $d/lq_isoforms.fasta outdir outprefix \
+$d/cluster_report.csv $d/hq_isoforms.fasta $d/lq_isoforms.fasta outdir tiny_flea_isoseq \
 --num_hq_isoforms=3 --num_lq_isoforms=2 --random_seed=1
