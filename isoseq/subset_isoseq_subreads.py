@@ -77,7 +77,7 @@ def extract_subreads_by_zmw_ids(input_bam, output_bam, zmw_ids):
     execute(' '.join(cmd))
 
     # build index and make xml from output_bam
-    output_xml = output_bam[:-4] + ".xml"
+    output_xml = output_bam[:-4] + "et.xml"
     cmd = ['dataset', 'create', output_xml, output_bam, '--type=SubreadSet', '--generateIndices']
     print 'Running CMD: ' + ' '.join(cmd)
     execute(' '.join(cmd))

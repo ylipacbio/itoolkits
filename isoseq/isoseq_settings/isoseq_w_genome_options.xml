@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pipeline-preset-template>
+    <task-options>
+        <option id="pbtranscript.task_options.gmap_nproc">
+            <value>24</value>
+        </option>
+        <option id="pbccs.task_options.by_strand">
+            <value>False</value>
+        </option>
+        <option id="pbtranscript.task_options.sample_name">
+            <value />
+        </option>
+        <option id="pbccs.task_options.min_predicted_accuracy">
+            <value>0.8</value>
+        </option>
+        <option id="pbtranscript.task_options.hq_quiver_min_accuracy">
+            <value>0.99</value>
+        </option>
+        <option id="pbccs.task_options.no_polish">
+            <value>True</value>
+        </option>
+        <option id="pbtranscript.task_options.min_gmap_aln_coverage">
+            <value>0.99</value>
+        </option>
+        <option id="pbccs.task_options.min_length">
+            <value>50</value>
+        </option>
+        <option id="pbtranscript.task_options.ignore_polya">
+            <value>False</value>
+        </option>
+        <option id="pbccs.task_options.min_zscore">
+            <value>-9999</value>
+        </option>
+        <option id="pbtranscript.task_options.min_seq_len">
+            <value>50</value>
+        </option>
+        <option id="pbccs.task_options.min_passes">
+            <value>1</value>
+        </option>
+        <option id="pbtranscript.task_options.qv_trim_3p">
+            <value>30</value>
+        </option>
+        <option id="pbtranscript.task_options.allow_extra_5exon">
+            <value>False</value>
+        </option>
+        <option id="pbtranscript.task_options.bin_by_primer">
+            <value>False</value>
+        </option>
+        <option id="pbtranscript.task_options.bin_manual">
+            <value>[]</value>
+        </option>
+        <option id="pbtranscript.task_options.qv_trim_5p">
+            <value>100</value>
+        </option>
+        <option id="pbtranscript.task_options.min_gmap_aln_identity">
+            <value>0.95</value>
+        </option>
+        <option id="pbtranscript.task_options.bin_size_kb">
+            <value>1</value>
+        </option>
+        <option id="pbtranscript.task_options.min_fl_count">
+            <value>2</value>
+        </option>
+        <option id="pbtranscript.task_options.max_fuzzy_junction">
+            <value>5</value>
+        </option>
+        <option id="pbccs.task_options.max_drop_fraction">
+            <value>0.8</value>
+        </option>
+        <option id="pbccs.task_options.min_read_score">
+            <value>0.65</value>
+        </option>
+        <option id="pbccs.task_options.min_snr">
+            <value>3.75</value>
+        </option>
+        <option id="pbccs.task_options.max_length">
+            <value>15000</value>
+        </option>
+    </task-options>
+</pipeline-preset-template>
