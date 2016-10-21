@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 # consolidate-xml.py
 
+import sys
 from pbcore.io import ContigSet, FastaWriter
-import argparser
 
 
-def main(input_ds, output_fasta):
+def main(input_ds, out):
     """Convert input dataset to output fasta|fastq"""
     w = None
-    if w.endswith(".fa") or w.endswith(".fasta"):
-        w = FastaWriter(output_fasta)
+    if out.endswith(".fa") or out.endswith(".fasta"):
+        w = FastaWriter(out)
         for r in ContigSet(input_ds):
             w.writeRecord(r)
         w.close()
-    elif w.endswith(".fq") or w.endswith(".fastq"):
+    elif out.endswith(".fq") or out.endswith(".fastq"):
         w = FastqWriter(output_fasta)
         for r in ContigSet(input_ds):
             w.writeRecord(r)
@@ -24,7 +24,7 @@ def main(input_ds, output_fasta):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print "Usage: %s input.xml output.fasta" % op.basename(__file__)
+        print "Usage: %s input.xml output.fasta|fastq" % op.basename(__file__)
         sys.exit(1)
 
-    sys.exit(main(input_ds=sys.argv[1], output_fasta=sys.argv[2])
+    sys.exit(main(input_ds=sys.argv[1], out=sys.argv[2]))
