@@ -2,7 +2,8 @@
 # consolidate-xml.py
 
 import sys
-from itoolkits import consolidate_xml
+import os.path as op
+from itoolkits.io import consolidate_xml
 
 
 def main(input_ds, out):
