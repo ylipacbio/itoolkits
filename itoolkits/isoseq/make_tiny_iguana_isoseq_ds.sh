@@ -18,11 +18,12 @@ num_hq_isoforms=3
 # PARAMETER: number of LQ isoforms cherry-picked from full ds isoseq output
 num_lq_isoforms=1
 
-# OUTPUT: where to store the cherry-picked tiny dataset
-tiny_ds_data_dir=$outdir/tiny_ds_data
-tiny_ds_xml=$tiny_ds_data_dir/$tiny_ds_name.subreadset.xml
 # OUTPUT: tiny dataset has a name
 tiny_ds_name=tiny_iguana_isoseq
+
+# OUTPUT: where to store the cherry-picked tiny dataset
+tiny_ds_data_dir=$outdir/tiny_ds_data
+tiny_ds_xml=$tiny_ds_data_dir/${tiny_ds_name}.subreadset.xml
 # OUTPUT: running isoseq without genome on the tiny dataset
 tiny_ds_isoseq_job_dir=$outdir/tiny_ds_isoseq
 tiny_ds_isoseq_w_genome_job_dir=$outdir/tiny_ds_isoseq_w_genome
@@ -54,7 +55,7 @@ function run_isoseq()
     # run_isoseq($tiny_ds_xml $tiny_ds_isoseq_job_dir)
     ds_xml=$1
     job_dir=$2
-    echo "Running run_isoseq_w_genome $1 $2"
+    echo "Running run_isoseq $1 $2"
 
     job_sh=$job_dir/job.sh
     if [ -f $ds_xml ]; then
