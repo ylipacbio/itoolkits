@@ -2,7 +2,7 @@
 import os.path as op
 from pbcore.io import ContigSet, FastaWriter
 
-
+__all__ = ["smrtlink_dir", "consolidate_xml"]
 def smrtlink_dir(smrtlink_host, job_id):
     """Given smrtlink host and job id, return path to a smrtlink job dir."""
     host_jobs_root = ""
