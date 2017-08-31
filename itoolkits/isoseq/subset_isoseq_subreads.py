@@ -115,22 +115,12 @@ def get_lq_cluster_ids(fasta_file):
     return [name.split('/')[0].replace('LQ', 'ICE') for name in get_fasta_ids(fasta_file)]
 
 
-def subset_isoseq_bam(input_bam, cluster_report_csv,
-                      hq_isoforms_fasta, lq_isoforms_fasta,
-                      outdir, outprefix, num_hq_isoforms, num_lq_isoforms,
-                      random_seed=0):
+def subset_isoseq_bam(input_bam, cluster_report_csv, hq_cluster_ids, lq_cluster_ids, outdir, outprefix):
     # make output dir
     mkdir(outdir)
 
     # map cluster ids to zmw ids from csv report
     c2z = map_cluster_ids_to_zmw_ids(cluster_report_csv) # make sure exactly one smrtcell
-
-    # random select hq/lq isoform clusters
-    np.random.seed(random_seed)
-    hq_cluster_ids = np.random.choice(get_hq_cluster_ids(hq_isoforms_fasta), num_hq_isoforms)
-    lq_cluster_ids = np.random.choice(get_lq_cluster_ids(lq_isoforms_fasta), num_lq_isoforms)
-    print 'Selected hq isoforms are %s' % hq_cluster_ids
-    print 'Selected lq isoforms are %s' % lq_cluster_ids
 
     # get zmws associated with selected isoform clusters and sort them
     hq_zmw_ids = set()
@@ -152,6 +142,8 @@ def subset_isoseq_bam(input_bam, cluster_report_csv,
     output_bam = op.join(outdir, outprefix+".subreads.bam")
     extract_subreads_by_zmw_ids(input_bam=input_bam, output_bam=output_bam, zmw_ids=zmw_ids)
 
+def str_to_list(s):
+    return [x.strip() for x in s.split(';') if len(x.strip()) != 0]
 
 def get_parser():
     """Get parser"""
@@ -163,21 +155,35 @@ def get_parser():
     parser.add_argument("lq_isoforms_fasta", type=str, help="LQ isoform fasta output running Iso-Seq on input bam")
     parser.add_argument("outdir", type=str, help="Output directory")
     parser.add_argument("outprefix", type=str, help="Output file prefix")
+    #parser.add_mutually_exclusive_group(required=True)
     parser.add_argument("--num_hq_isoforms", type=int, default=1, help="Number of HQ isoforms selected")
     parser.add_argument("--num_lq_isoforms", type=int, default=1, help="Number of LQ isoforms selected")
     parser.add_argument("--random_seed", type=int, default=0, help="random number seed")
+
+    parser.add_argument("--hq_cluster_ids", default='', help="Selected HQ isoforms ids, override num_hq_isoforms")
+    parser.add_argument("--lq_cluster_ids", default='', help="Selected LQ isoforms ids, override num_lq_isoforms")
 
     return parser
 
 if __name__ == "__main__":
     parser = get_parser()
     args = parser.parse_args()
-    subset_isoseq_bam(input_bam=args.input_bam, cluster_report_csv=args.cluster_report_csv,
-                      hq_isoforms_fasta=args.hq_isoforms_fasta, lq_isoforms_fasta=args.lq_isoforms_fasta,
-                      outdir=args.outdir, outprefix=args.outprefix,
-                      num_hq_isoforms=args.num_hq_isoforms, num_lq_isoforms=args.num_lq_isoforms,
-                      random_seed=args.random_seed)
+    np.random.seed(args.random_seed)
 
+    hq_cluster_ids = str_to_list(args.hq_cluster_ids)
+    if len(hq_cluster_ids) == 0: # random get hq isoforms ids
+        hq_cluster_ids = np.random.choice(get_hq_cluster_ids(args.hq_isoforms_fasta), args.num_hq_isoforms)
+
+    lq_cluster_ids = str_to_list(args.lq_cluster_ids)
+    if len(lq_cluster_ids) == 0: # random get lq isoforms ids
+        lq_cluster_ids = np.random.choice(get_lq_cluster_ids(args.lq_isoforms_fasta), args.num_lq_isoforms)
+
+    print 'hq_cluster_ids are %r' % hq_cluster_ids
+    print 'lq_cluster_ids are %r' % lq_cluster_ids
+
+    subset_isoseq_bam(input_bam=args.input_bam, cluster_report_csv=args.cluster_report_csv,
+                      hq_cluster_ids=hq_cluster_ids, lq_cluster_ids=lq_cluster_ids,
+                      outdir=args.outdir, outprefix=args.outprefix)
 # E.x.
 # python subset_isoseq_subreads.py \
 # /pbi/collections/315/3150353/r54086_20160831_010819/4_D01/m54086_160831_230338.subreads.bam \
