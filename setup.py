@@ -72,7 +72,8 @@ setup(
     include_dirs=[numpy.get_include()],
     scripts=['itoolkits/misc/consolidate-xml.py',
              'itoolkits/isoseq/subset_isoseq_subreads.py',
-             'itoolkits/hgap/validate_smrtlink_hgap4.py'
+             'itoolkits/hgap/validate_smrtlink_hgap4.py',
+             'itoolkits/misc/extract_seq_from_fasta.py'
             ],
     #entry_points={'console_scripts': [
     #    'pbtranscript = pbtranscript.PBTranscriptRunner:main',
