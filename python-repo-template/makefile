@@ -9,6 +9,8 @@ all:
 	cd ${dstdir} && cp -r ${CWD}/* . && \
 	find . -type f | xargs sed -i 's/mytool/${mytool}/g' && \
 	echo `pwd` && ls && mv mytool ${mytool} && mv mytool.makefile makefile && \
+	mv bamboo_mytool_build.sh bamboo_${mytool}_build.sh  && \
+	mv bamboo_mytool_test.sh  bamboo_${mytool}_test.sh 
 	cd ${CWD}
 
 usage:
