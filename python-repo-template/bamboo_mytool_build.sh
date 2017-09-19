@@ -54,4 +54,4 @@ which pbtranscript2 || ( pushd ../pbtranscript2 && pip install -v --user --edit 
 
 make doctest
 # Maybe turn these back on someday.
-#make pylint
+make pylint
