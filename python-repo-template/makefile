@@ -1,5 +1,5 @@
-mytool?=pbsvvv
-dstdir?=/home/UNIXHOME/yli/tmp/pbsvvv
+mytool?=newtool
+dstdir?=/home/UNIXHOME/yli/tmp/newtool
 CWD=$(shell pwd)
 
 all:
