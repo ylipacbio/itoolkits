@@ -73,11 +73,12 @@ setup(
     scripts=['itoolkits/misc/consolidate-xml.py',
              'itoolkits/isoseq/subset_isoseq_subreads.py',
              'itoolkits/hgap/validate_smrtlink_hgap4.py',
-             'itoolkits/misc/extract_seq_from_fasta.py'
+             'itoolkits/misc/extract_seq_from_fasta.py',
+             'itoolkits/misc/extract_seqs_from_fasta.py',
             ],
-    #entry_points={'console_scripts': [
-    #    'pbtranscript = pbtranscript.PBTranscriptRunner:main',
-    #    ]},
+    entry_points={'console_scripts': [
+        'samstat = itoolkits.misc.samstat:main',
+        ]},
     package_dir={'itoolkits': 'itoolkits'},
     package_data={'itoolkits':
                   ['isoseq/isoseq_settings/isoseq_options.xml']},
