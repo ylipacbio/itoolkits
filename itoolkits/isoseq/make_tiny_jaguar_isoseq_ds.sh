@@ -4,4 +4,4 @@ csv=/pbi/dept/secondary/siv/smrtlink/smrtlink-sms/jobs-root/001/001151/tasks/pbt
 hq=/pbi/dept/secondary/siv/smrtlink/smrtlink-sms/jobs-root/001/001151/tasks/pbtranscript2tools.tasks.create_workspace-0/workspace/all_arrowed_hq.100_30_0.99.fasta 
 lq=/pbi/dept/secondary/siv/smrtlink/smrtlink-sms/jobs-root/001/001151/tasks/pbtranscript2tools.tasks.create_workspace-0/workspace/all_arrowed_lq.fasta
 
-python subset_isoseq_subreads.py --num_hq_isoforms 4 --num_lq_isoforms 4 $sr $csv $hq $lq  outdir tiny_jaguar
+python subset_isoseq_subreads.py --num_hq_isoforms 10 --num_lq_isoforms 10 $sr $csv $hq $lq  outdir tiny_jaguar
