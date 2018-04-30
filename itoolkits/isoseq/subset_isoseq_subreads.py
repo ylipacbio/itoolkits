@@ -122,16 +122,21 @@ def subset_isoseq_bam(input_bam, cluster_report_csv, hq_cluster_ids, lq_cluster_
     # map cluster ids to zmw ids from csv report
     c2z = map_cluster_ids_to_zmw_ids(cluster_report_csv) # make sure exactly one smrtcell
 
+    def _get_cid(cid):
+        if '|' in cid: # e.g., 'ICE_samplemYMss1vu|cb12356_c13'
+            return cid.split('|')[1]
+        else:
+            return cid
     # get zmws associated with selected isoform clusters and sort them
     hq_zmw_ids = set()
     for cid in hq_cluster_ids:
-        for zmw_id in c2z[cid]:
+        for zmw_id in c2z[_get_cid(cid)]:
             hq_zmw_ids.update([zmw_id])
     #print 'hq_zmw_ids = %s' % hq_zmw_ids
 
     lq_zmw_ids = set()
     for cid in lq_cluster_ids:
-        for zmw_id in c2z[cid]:
+        for zmw_id in c2z[_get_cid(cid)]:
             lq_zmw_ids.update([zmw_id])
     #print 'lq_zmw_ids = %s' % lq_zmw_ids
 
@@ -180,7 +185,6 @@ if __name__ == "__main__":
 
     print 'hq_cluster_ids are %r' % hq_cluster_ids
     print 'lq_cluster_ids are %r' % lq_cluster_ids
-
     subset_isoseq_bam(input_bam=args.input_bam, cluster_report_csv=args.cluster_report_csv,
                       hq_cluster_ids=hq_cluster_ids, lq_cluster_ids=lq_cluster_ids,
                       outdir=args.outdir, outprefix=args.outprefix)
