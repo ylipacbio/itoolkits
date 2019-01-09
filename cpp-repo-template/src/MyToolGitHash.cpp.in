@@ -1,0 +1,13 @@
+// Author: Yuan Li
+
+#include "MyToolVersion.h"
+
+namespace PacBio {
+namespace {
+static constexpr char mytoolGitSha1[] = "@MYTOOL_GIT_SHA1@";
+}
+
+std::string MyToolGitSha1()
+{ return mytoolGitSha1; }
+
+} // ::PacBio

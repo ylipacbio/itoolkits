@@ -1,0 +1,15 @@
+// Author: Yuan Li
+
+#include "MyToolVersion.h"
+
+namespace PacBio {
+namespace {
+constexpr char   mytoolVersion[]    = "@MYTOOL_VERSION@";
+constexpr size_t mytoolVersionMajor = @MYTOOL_VERSION_MAJOR@;
+constexpr size_t mytoolVersionMinor = @MYTOOL_VERSION_MINOR@;
+constexpr size_t mytoolVersionPatch = @MYTOOL_VERSION_PATCH@;
+}
+
+std::string MyToolVersion()
+{ return mytoolVersion; }
+} // ::PacBio
