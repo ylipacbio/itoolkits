@@ -3,14 +3,16 @@
 import sys
 import pandas as pd
 from argparse import ArgumentParser
-from ..libs import AlignmentFile
+# from ..libs import AlignmentFile
+from pbsv1.io.bamstream import BamStream
 
 
 def pct_similarity(r):
     if r.is_unmapped:
         return 'NA'
     match, insertion, deletion, skip, softclip, hard_clip, pad, equal, diff, back, nm =  r.get_cigar_stats()[0]
-    return int(100 * (1.0 - nm * 2.0 / (2 * match + insertion + deletion)))
+    assert match * (equal + diff) == 0
+    return int(100 * (1.0 - nm * 2.0 / (2 * (match + equal + diff) + insertion + deletion)))
 
 
 def samstat(bam_fn):
@@ -27,7 +29,7 @@ def samstat(bam_fn):
     d = [(not r.is_unmapped, r.is_supplementary, r.is_duplicate,
           r.query_alignment_start, r.query_alignment_length, r.query_length,
           r.reference_start, r.reference_length,
-          pct_similarity(r), r.mapping_quality) for r in AlignmentFile(bam_fn)]
+          pct_similarity(r), r.mapping_quality) for r in BamStream(bam_fn, ref_regions=None, require_sorted=False)]
     return pd.DataFrame(data=d, columns=columns)
 
 

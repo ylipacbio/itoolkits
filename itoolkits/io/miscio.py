@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os.path as op
-from pbcore.io import ContigSet, FastaWriter
+from pbcore.io import ContigSet, FastaWriter, FastqWriter
 
 __all__ = ["smrtlink_dir", "consolidate_xml"]
 def smrtlink_dir(smrtlink_host, job_id):
@@ -27,7 +27,7 @@ def consolidate_xml(input_ds, out):
             w.writeRecord(r)
         w.close()
     elif out.endswith(".fq") or out.endswith(".fastq"):
-        w = FastqWriter(output_fasta)
+        w = FastqWriter(out)
         for r in ContigSet(input_ds):
             w.writeRecord(r)
         w.close()
