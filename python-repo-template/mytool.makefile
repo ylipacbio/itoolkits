@@ -53,3 +53,8 @@ coverage-install:
 	ln -sf ${THISDIR}/mysitecustomize.py ${PYTHONUSERBASE}/lib/python2.7/site-packages/sitecustomize.py
 coverage-uninstall:
 	rm -f ${PYTHONUSERBASE}/lib/python2.7/site-packages/sitecustomize.py*
+autofmt:
+	find . -type f -name '*.py' | xargs autoflake --in-place --remove-unused-variables --expand-star-imports
+	find . -type f -name '*.py' | xargs autopep8  --in-place --max-line-length 120
+vulture:
+	vulture .
