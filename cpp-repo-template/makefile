@@ -1,6 +1,6 @@
-mytool?=newtool
-MyTool?=NewTool
-MYTOOL?=NEWTOOL
+mytool?=ccsqv
+MyTool?=CcsQv
+MYTOOL?=CCSQV
 dstdir?=/home/UNIXHOME/yli/tmp/newtool
 CWD=$(shell pwd)
 
@@ -10,8 +10,9 @@ all:
 	rm -rf ${dstdir} && mkdir ${dstdir} \
 	&& cd ${dstdir} && ls ${CWD}/* && cp -r ${CWD}/* . \
 	&& cp ${CWD}/.gitignore .  \
+	&& cp ${CWD}/.clang-format .  \
 	&& mv src/MyToolGitHash.cpp.in src/${MyTool}GitHash.cpp.in \
-	&& mv src/MyToolVersion.cpp.in src/${MyTool}Version.cpp \
+	&& mv src/MyToolVersion.cpp.in src/${MyTool}Version.cpp.in \
 	&& mv src/MyToolVersion.h src/${MyTool}Version.h \
 	&& mv src/tools/mytool src/tools/${mytool}/ \
 	&& mv src/tools/${mytool}/mytool.cpp src/tools/${mytool}/${mytool}.cpp \
